@@ -1,0 +1,9 @@
+fastapi[standard]
+uvicorn
+tensorflow
+opencv-python
+numpy
+pydantic
+mediapipe
+mtcnn
+
