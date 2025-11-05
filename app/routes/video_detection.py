@@ -6,7 +6,7 @@ from fastapi import APIRouter, UploadFile, File, BackgroundTasks
 from app.services.model import detect_deepfake
 from app.config.config import ExtractionConfig
 from fastapi.responses import FileResponse
-from app.services.save_video import VideoSaver
+from app.services.video_saver import VideoSaver
 from app.services.video_preprocessor import VideoPreprocessor
 from fastapi import HTTPException
 from app.utils.delayed_cleanup import delayed_cleanup
@@ -32,7 +32,7 @@ async def predict_video(file: UploadFile = File(...), frames: int = 50, backgrou
             content={"detail": f"Failed to save uploaded video: {str(e)}"}
         )
 
-    # Extract frames
+    # Extract frames and create necessary preprocessing
     preprocessor = VideoPreprocessor(ExtractionConfig)
     stats = preprocessor.preprocess_frame(
         video_path=video_path,
