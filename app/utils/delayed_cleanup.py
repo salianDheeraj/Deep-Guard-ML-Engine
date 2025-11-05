@@ -3,4 +3,8 @@ import shutil
 
 async def delayed_cleanup(path: str, delay: int = 60):
     await asyncio.sleep(delay)
-    shutil.rmtree(path, ignore_errors=True)
+    try:
+        shutil.rmtree(path, ignore_errors=True)
+        print(f"Cleaned up temporary directory: {path}")
+    except Exception as e:
+        print(f"Error during delayed cleanup of {path}: {str(e)}")
