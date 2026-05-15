@@ -102,4 +102,20 @@ Analyzes a batch of uploaded images.
     uvicorn app.main:app --reload --port 8000
     ```
 
+### Docker
+
+The repository includes a Dockerfile for the ML engine, so you can build and run it directly with Docker.
+
+1.  Build the image:
+    ```bash
+    docker build -t deep-guard-ml-engine .
+    ```
+
+2.  Run the container:
+    ```bash
+    docker run --rm -p 8000:8000 deep-guard-ml-engine
+    ```
+
+3.  Open the API docs at `http://localhost:8000/docs` after the container starts.
+
 The API will be available at `http://localhost:8000`. Documentation is available at `http://localhost:8000/docs`.
